@@ -1,0 +1,65 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Bank Info</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="bankForm" (ngSubmit)="onBankSubmit()">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Bank Name</mat-label>
+                            <input matInput placeholder="HDFC Bank" formControlName="bankName" name="bankName"
+                                [(ngModel)]="bankInfo.bankName">
+                        </mat-form-field>
+                        <small
+                            *ngIf="bankForm.controls['bankName'].hasError('required') && bankForm.controls['bankName'].touched"
+                            class="form-error-msg"> Bank name is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Account Number</mat-label>
+                            <input matInput placeholder="89038093489" formControlName="accountNumber"
+                                name="accountNumber" [(ngModel)]="bankInfo.accountNumber">
+                        </mat-form-field>
+                        <small
+                            *ngIf="bankForm.controls['accountNumber'].hasError('required') && bankForm.controls['accountNumber'].touched"
+                            class="form-error-msg"> Account number is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>IFSC Code</mat-label>
+                            <input matInput placeholder="HDID0004563" formControlName="ifscCode" name="ifscCode"
+                                [(ngModel)]="bankInfo.ifscCode">
+                        </mat-form-field>
+                        <small
+                            *ngIf="bankForm.controls['ifscCode'].hasError('required') && bankForm.controls['ifscCode'].touched"
+                            class="form-error-msg"> IFSC code is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Name in Bank</mat-label>
+                            <input matInput placeholder="As per Bank" formControlName="nameInBank" name="nameInBank"
+                                [(ngModel)]="bankInfo.nameInBank">
+                        </mat-form-field>
+                        <small
+                            *ngIf="bankForm.controls['nameInBank'].hasError('required') && bankForm.controls['nameInBank'].touched"
+                            class="form-error-msg"> Name in bank is required </small>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <span fxFlex="8px"></span>
+                <button mat-raised-button color="primary" type="submit" matStepperNext>Save & Continue</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

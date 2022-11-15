@@ -1,0 +1,38 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Reference Name</mat-label>
+                <input matInput placeholder="Name" name="referenceName" [(ngModel)]="reference.referenceName"
+                    [formControl]="$any(inputFormGroup.controls.referenceName)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['referenceName'].hasError('required') && inputFormGroup.controls['referenceName'].touched"
+                class="form-error-msg"> Name is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="9876543356" name="mobileNumber" [(ngModel)]="reference.mobileNumber"
+                    [formControl]="$any(inputFormGroup.controls.mobileNumber)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['mobileNumber'].hasError('required') && inputFormGroup.controls['mobileNumber'].touched"
+                class="form-error-msg"> Mobile number is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Relationship</mat-label>
+                <input matInput placeholder="Father" name="relationshipType" [(ngModel)]="reference.relationshipType"
+                    [formControl]="$any(inputFormGroup.controls.relationshipType)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['relationshipType'].hasError('required') && inputFormGroup.controls['relationshipType'].touched"
+                class="form-error-msg"> Relationship name is required </small>
+        </div>
+    </div>
+</div>

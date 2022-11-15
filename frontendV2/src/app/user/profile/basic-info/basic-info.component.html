@@ -1,0 +1,225 @@
+<mat-card class="p-0">
+  <mat-card-content>
+    <form [formGroup]="basicForm" (ngSubmit)="onBasicSubmit()" multi>
+      <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+          <div class="pb-16">
+            <div class="avatar-upload">
+              <div class="avatar-edit">
+                <input type='file' formControlName="profilePictureFile" name="profilePictureFile" id="imageUpload"
+                  accept=".png, .jpg, .jpeg" #profilePictureFileInput (change)="onFileChange($event, 'profilePictureFile','profilePictureUrl',true)" />
+              </div>
+              <div class="avatar-preview ">
+                <div id="imagePreview" [style.backgroundImage]="'url('+ ( basicInfo.profilePictureUrl? basicInfo.profilePictureUrl : defaultAvatorUrl ) +')'">
+                </div>
+              </div>
+              <mat-divider class="pt-16"></mat-divider>
+              <button type="button" mat-stroked-button color="primary" (click)="profilePictureFileInput.click()">Upload
+                Profile Picture</button>
+              <div>
+                <span class="file-validation-caption">Accepted Formats:PNG, JPG, JPEG *</span>
+              </div>
+            </div>
+            <small
+              *ngIf="basicForm.controls['profilePictureFile'].hasError('required') && basicForm.controls['profilePictureFile'].touched"
+              class="form-error-msg"> Profile picture is required </small>
+          </div>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="75" class="pr-16">
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>First Name</mat-label>
+                  <input matInput placeholder="Steve" formControlName="firstName" name="firstName">
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['firstName'].hasError('required') && basicForm.controls['firstName'].touched"
+                  class="form-error-msg"> First name is required </small>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>Middle Name</mat-label>
+                  <input matInput formControlName="middleName" name="middleName" placeholder="Rogers" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput placeholder="Last name" formControlName="lastName" name="lastName" />
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['lastName'].hasError('required') && basicForm.controls['lastName'].touched"
+                  class="form-error-msg"> Last name is required </small>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-18">
+                <mat-form-field class="full-width">
+                  <input matInput name="dob" formControlName="dob" placeholder="Date of Birth"
+                    [matDatepicker]="appDatepicker">
+                  <mat-datepicker-toggle matSuffix [for]="appDatepicker"></mat-datepicker-toggle>
+                </mat-form-field>
+                <mat-datepicker #appDatepicker></mat-datepicker>
+                <small *ngIf="basicForm.controls['dob'].hasError('required') && basicForm.controls['dob'].touched"
+                  class="form-error-msg"> Date of birth is required </small>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>PAN Number</mat-label>
+                  <input matInput placeholder="GMSPM14141M" formControlName="panNumber" name="panNumber" />
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['panNumber'].hasError('required') && basicForm.controls['panNumber'].touched"
+                  class="form-error-msg"> PAN number is required </small>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <button type="button" mat-raised-button (click)="panFileInput.click()">Choose PAN File</button>
+                <div>
+                  <span class="file-validation-caption">Accepted Formats:PDF *</span>
+                </div>
+                <input hidden accept=".pdf" (change)="onFileChange($event, 'panFile','panAttachmentUrl',true)" #panFileInput type="file"
+                  id="panFile" formControlName="panFile">
+
+                <a href="javascript:void(0)"
+                  (click)="openDialog(pdfDialog)">{{basicInfo.panAttachmentUrl}}</a>
+                <ng-template #pdfDialog>
+                  <h2 matDialogTitle>PDF!</h2>
+                  <mat-dialog-content>
+                    <div>
+                      <pdf-viewer *ngIf="basicInfo.panAttachmentUrl" [src]="basicInfo.panAttachmentUrl"></pdf-viewer>
+                    </div>
+                  </mat-dialog-content>
+                  <mat-dialog-actions align="end">
+                    <button mat-raised-button matDialogClose color="primary">Close</button>
+                  </mat-dialog-actions>
+                </ng-template>
+                <small
+                  *ngIf="basicForm.controls['panFile'].hasError('required') && basicForm.controls['panFile'].touched"
+                  class="form-error-msg">panFile is required </small>
+              </div>
+            </div>
+          </div>
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>Aadhar Name</mat-label>
+                  <input matInput placeholder="As per Aadhar" formControlName="aadhaarName" name="aadhaarName">
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['aadhaarName'].hasError('required') && basicForm.controls['aadhaarName'].touched"
+                  class="form-error-msg"> Aadhar name is required </small>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>Aadhar Number</mat-label>
+                  <input matInput placeholder="0987 7654 9876" formControlName="aadhaarNumber" name="aadhaarNumber">
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['aadhaarNumber'].hasError('required') && basicForm.controls['aadhaarNumber'].touched"
+                  class="form-error-msg"> Aadhar number is required </small>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+              <div class="pb-16">
+                <button type="button" mat-raised-button (click)="aadhaarFileSourceInput.click()">Choose Aadhaar
+                  File</button>
+                <div>
+                  <span class="file-validation-caption">Accepted Formats:PDF *</span>
+                </div>
+                <input hidden accept=".pdf" (change)="onFileChange($event, 'aadhaarFile','aadhaarFileUrl',false)" #aadhaarFileSourceInput type="file"
+                  id="aadhaarFile" formControlName="aadhaarFile">
+
+                <a [attr.href]="aadhaarFileSourceInput.value" color="primary"
+                  (click)="openDialog(aadhaarDialog)">{{aadhaarFileSourceInput.value}}</a>
+
+                <ng-template #aadhaarDialog>
+                  <h2 matDialogTitle>PDF!</h2>
+                  <mat-dialog-content>
+                    <div>
+                      <pdf-viewer *ngIf="aadhaarFileSourceInput.value" [src]="aadhaarFileSourceInput.value" [show-all]="false" 
+                        style="display: block;"></pdf-viewer>
+                    </div>
+                  </mat-dialog-content>
+                  <mat-dialog-actions align="end">
+                    <button mat-raised-button matDialogClose color="primary">Close</button>
+                  </mat-dialog-actions>
+                </ng-template>
+                <small
+                  *ngIf="basicForm.controls['aadhaarFile'].hasError('required') && basicForm.controls['aadhaarFile'].touched"
+                  class="form-error-msg">Aadhaar File is required </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <div fxFlex="100%" fxFlex.gt-xs="20%" class="pr-8">
+          <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="guardianType" name="guardianType">
+            <mat-button-toggle value="Father" aria-label="Text align left">
+              Father
+            </mat-button-toggle>
+            <mat-button-toggle value="Husband" aria-label="Text align center">
+              Husband
+            </mat-button-toggle>
+            <mat-button-toggle value="Guardian" aria-label="Text align right">
+              Guardian
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div fxFlex="100%" fxFlex.gt-xs="20%" class="pr-16">
+          <mat-form-field class="full-width">
+            <mat-label>{{group.value}} Name</mat-label>
+            <input matInput placeholder="" formControlName="guardianName" name="guardianName">
+          </mat-form-field>
+          <small
+            *ngIf="basicForm.controls['guardianName'].hasError('required') && basicForm.controls['guardianName'].touched"
+            class="form-error-msg"> {{group.value}} Name is required </small>
+        </div>
+        <div fxFlex="100%" fxFlex.gt-xs="20%" class="pr-16">
+          <div class="pb-16">
+            <mat-form-field class="full-width">
+              <mat-label>Nationality</mat-label>
+              <input matInput placeholder="Indian" formControlName="nationality" name="nationality">
+            </mat-form-field>
+            <small
+              *ngIf="basicForm.controls['nationality'].hasError('required') && basicForm.controls['nationality'].touched"
+              class="form-error-msg">Nationality is required </small>
+          </div>
+        </div>
+        <div fxFlex="100%" fxFlex.gt-xs="20%" class="pr-16">
+          <div class="pb-16">
+            <mat-form-field class="full-width">
+              <mat-label>Passport Number</mat-label>
+              <input matInput placeholder="0987 7654 9876" formControlName="passportNumber" name="passportNumber">
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="100%" fxFlex.gt-xs="20%" class="pr-16">
+          <div class="pb-16">
+            <mat-form-field class="full-width">
+              <mat-label>Any valid Visa</mat-label>
+              <input matInput placeholder="" formControlName="validVisaInformation" name="validVisaInformation">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <button mat-raised-button color="primary" type="submit">Save & Continue</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

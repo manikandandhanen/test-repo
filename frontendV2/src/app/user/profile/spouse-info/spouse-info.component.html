@@ -1,0 +1,53 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Spouse Info</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="spouseForm" (ngSubmit)="onSpouseSubmit()">
+            <div fxLayout="row wrap">
+                <div class="pb-16">
+                    <Label>Maritial Status*</Label>
+                    <mat-radio-group name="maritialStatus" [ngModel]="spouse.maritialStatus" formControlName="maritialStatus">
+                        <mat-radio-button value="Yes" class="mx-12">Yes</mat-radio-button>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Spouse’s Name</mat-label>
+                            <input matInput name="spouseName"  [ngModel]="spouse.spouseName" formControlName="spouseName" placeholder="spouse Name"
+                                value="">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Spouse’s Employer:</mat-label>
+                            <input matInput name="spouseEmployer" [ngModel]="spouse.spouseEmployer" formControlName="spouseEmployer"
+                                placeholder="Spouse Employer" value="">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Spouse’s Work Phone</mat-label>
+                            <input matInput name="spousePhone" [ngModel]="spouse.spousePhone" formControlName="spousePhone"
+                                placeholder="Spouse’s Work Phone" value="">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <span fxFlex="8px"></span>
+                <button mat-raised-button color="primary" type="submit" matStepperNext>Save & Continue</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

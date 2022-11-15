@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.API", "HRMS.API\HRMS.API.csproj", "{A8131ACB-6643-451A-A6BD-D4A6737A0D56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRMS.Infrastructure", "HRMS.Infrastructure\HRMS.Infrastructure.csproj", "{32ABF0E9-BA8E-4034-B8AD-1834B9AB0D66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8131ACB-6643-451A-A6BD-D4A6737A0D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8131ACB-6643-451A-A6BD-D4A6737A0D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8131ACB-6643-451A-A6BD-D4A6737A0D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8131ACB-6643-451A-A6BD-D4A6737A0D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32ABF0E9-BA8E-4034-B8AD-1834B9AB0D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32ABF0E9-BA8E-4034-B8AD-1834B9AB0D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32ABF0E9-BA8E-4034-B8AD-1834B9AB0D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32ABF0E9-BA8E-4034-B8AD-1834B9AB0D66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80D9F1DF-C0AB-4993-BAA5-E55AE2BF9EEF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,28 @@
+<h2>Update User Role</h2>
+<div mat-dialog-content>
+  <form [formGroup]="editUserRoleForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="userRoles" multiple>
+        <mat-option *ngFor="let role of userRoleList" [value]="role">
+          {{ role }}</mat-option
+        >
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+  </form>
+  <mat-divider inset></mat-divider>
+
+  <div class="btn">
+    <button mat-raised-button color="dark" mat-dialog-close="">Cancel</button
+    >&nbsp;
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onUpdateRole()"
+    >
+      Update
+    </button>
+  </div>
+</div>

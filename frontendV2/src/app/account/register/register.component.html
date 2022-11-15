@@ -1,0 +1,123 @@
+<div class="page-wrap h-full slate">
+  <div class="session-form-hold">
+    <mat-progress-bar mode="determinate" class="session-progress"></mat-progress-bar>
+    <mat-card *ngIf="!registrationConfirmed">
+      <mat-card-content>
+        <div class="text-center pt-8 pb-16">
+          <img width="60px" src="assets/images/mastec-logo2.png" alt="" class="mb-8">
+           <h2>Lets get started</h2>
+          <p class="text-muted m-0">Register to use HRMStudio</p>
+        </div>
+
+        <p *ngIf="errorMsg" class="text-center"><small class="text-red">{{errorMsg}}</small></p>
+
+        <form [formGroup]="registerForm"  (ngSubmit)="onRegister()">
+          <div class="">
+            <mat-form-field class="full-width">
+              <input 
+                type="text"
+                name="fullName"
+                matInput
+                [formControl]="registerForm.controls['fullName']"
+                placeholder="Your Full Name" 
+                autocomplete="cc-given-name"
+                value="">
+            </mat-form-field>
+            <small 
+              *ngIf="registerForm.controls['fullName'].hasError('required') && registerForm.controls['fullName'].touched" 
+              class="form-error-msg"> Name is required </small>
+          </div>
+          <div class="">
+            <mat-form-field class="full-width">
+              <input
+                type="email"
+                name="email"
+                matInput
+                [formControl]="registerForm.controls['email']"
+                placeholder="Your Email"
+                >
+            </mat-form-field>
+            <small 
+              *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched" 
+              class="form-error-msg"> Email is required </small>
+
+              <small 
+                *ngIf="registerForm.controls['email'].hasError('email') && registerForm.controls['email'].touched" 
+                class="form-error-msg"> Invaild email address </small>
+          </div>
+
+          <div class="">
+            <mat-form-field class="full-width">
+              <input 
+                type="password"
+                id="new-password"
+                name="new-password"
+                matInput
+                [formControl]="registerForm.controls['password']"
+                placeholder="New password" 
+                value=""
+                autocomplete="new-password"
+                >
+            </mat-form-field>
+            <small 
+              *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched" 
+              class="form-error-msg"> Password is required </small>
+              <small 
+              *ngIf="registerForm.controls['password'].hasError('pattern') && registerForm.controls['password'].touched" 
+              class="form-error-msg"> Password must contain more than 6 characters,1 upper case letter, 1 lower case letter,1 digit and 1 special character </small>
+              <small 
+              *ngIf="registerForm.controls['password'].hasError('minLength') && registerForm.controls['password'].touched" 
+              class="form-error-msg"> Password must contain more than 6 characters </small>
+          </div>
+          <div class="">
+            <mat-form-field class="full-width">
+              <input 
+                type="password"
+                name="confirmPassword"
+                matInput
+                [formControl]="registerForm.controls['confirmPassword']"
+                placeholder="Confirm Password" 
+                value=""
+                autocomplete="new-password"
+                >
+            </mat-form-field>
+            <small 
+              *ngIf="registerForm.controls['confirmPassword'].hasError('required') && registerForm.controls['confirmPassword'].touched" 
+              class="form-error-msg"> Confirm Password is required </small>
+              <small 
+              *ngIf="registerForm.controls['confirmPassword'].hasError('matching')" 
+              class="form-error-msg"> Confirm Password does not match
+              </small>  
+          </div>
+          <div class="pb-16">
+            <mat-checkbox
+              name="agreed"
+              [formControl]="registerForm.controls['agreed']"
+              class="pb-16">I have read and agree to the terms of service.</mat-checkbox>
+
+              <small 
+                *ngIf="registerForm.controls['agreed'].hasError('agreed') && registerForm.controls['agreed'].touched" 
+                class="form-error-msg"> You must agree to the terms and conditions </small>
+          </div>
+          <!-- registerForm.invalid || -->
+          <button mat-raised-button class="mat-primary full-width mb-16" [disabled]=" !isValidToken">Register</button> 
+          <div class="text-center">
+            <a [routerLink]="'/account/login'" class="text-center full-width">Login to existing account</a>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="registrationConfirmed">
+      <mat-card-content>
+        <div class="text-center pt-8 pb-16">
+          <img width="60px" src="assets/images/mastec-logo2.png" alt="" class="mb-8">
+           <h2>HRMStudio</h2>
+          <p class="text-muted m-0">Registstration Confirmed!</p>
+        </div>
+
+        <p class="text-center"><small class="text-green">Please continue to login to use HRMStudio</small></p>
+        <button mat-raised-button class="mat-primary full-width mb-16" [routerLink]="'/account/login'">Redirect to Login</button> 
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

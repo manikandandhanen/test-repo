@@ -1,0 +1,65 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Date of Joining Info</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="dateOfJoiningForm" (ngSubmit)="onDateOfJoiningSubmit()">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Date of Joining</mat-label>
+                            <input matInput placeholder="(Joining date)" formControlName="doj" name="doj"
+                                [(ngModel)]="dojInfo.doj">
+                        </mat-form-field>
+                        <small
+                            *ngIf="dateOfJoiningForm.controls['doj'].hasError('required') && dateOfJoiningForm.controls['doj'].touched"
+                            class="form-error-msg"> Date of joining is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Gross Salary</mat-label>
+                            <input matInput placeholder="(CTC mentioned in Offer letter)" formControlName="salary"
+                                name="salary" [(ngModel)]="dojInfo.salary">
+                        </mat-form-field>
+                        <small
+                            *ngIf="dateOfJoiningForm.controls['salary'].hasError('required') && dateOfJoiningForm.controls['salary'].touched"
+                            class="form-error-msg"> Gross salary is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Location</mat-label>
+                            <input matInput placeholder="Bangalore" formControlName="location" name="location"
+                                [(ngModel)]="dojInfo.location">
+                        </mat-form-field>
+                        <small
+                            *ngIf="dateOfJoiningForm.controls['location'].hasError('required') && dateOfJoiningForm.controls['location'].touched"
+                            class="form-error-msg"> Location is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Project</mat-label>
+                            <input matInput placeholder="" formControlName="project" name="project"
+                                [(ngModel)]="dojInfo.project">
+                        </mat-form-field>
+                        <small
+                            *ngIf="dateOfJoiningForm.controls['project'].hasError('required') && dateOfJoiningForm.controls['project'].touched"
+                            class="form-error-msg"> Project is required </small>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <span fxFlex="8px"></span>
+                <button mat-raised-button color="primary" type="submit" matStepperNext>Save & Continue</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

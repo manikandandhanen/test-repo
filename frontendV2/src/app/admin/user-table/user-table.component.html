@@ -1,0 +1,190 @@
+<div class="top">
+  <button
+    mat-stroked-button
+    [disabled]="isActionSelected('Revoked')"
+    (click)="updateSelectedUsersStatus('Revoked', 'Invited')"
+  >
+    Re-Invite
+  </button>
+  &nbsp;
+  <button
+    mat-stroked-button
+    color="primary"
+    [disabled]="isActionSelected('Invited')"
+    (click)="updateSelectedUsersStatus('Invited', 'Revoked')"
+  >
+    Revoke
+  </button>
+  &nbsp;
+  <button
+    mat-stroked-button
+    color="accent"
+    [disabled]="isActionSelected('Deactivated')"
+    (click)="updateSelectedUsersStatus('Deactivated', 'Active')"
+  >
+    Activate
+  </button>
+  &nbsp;
+  <button
+    mat-stroked-button
+    color="warn"
+    [disabled]="isActionSelected('Active')"
+    (click)="updateSelectedUsersStatus('Active', 'Deactivated')"
+  >
+    Deactivate
+  </button>
+  &nbsp;
+  <mat-form-field appearance="standard" class="filter">
+    <mat-label>Search User</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="search user"
+      #input
+    />
+  </mat-form-field>
+
+  <button mat-stroked-button [disabled]="true" id="csv">Export CSV</button>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="onInviteUser()"
+    id="Invite-btn"
+  >
+    Invite-user+
+  </button>
+</div>
+<div class="example-container mat-elevation-z8">
+  <div style="margin-top: 25px">
+    <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <!-- select column -->
+      <ng-container matColumnDef="select" id="select">
+        <mat-header-cell *matHeaderCellDef class="w-75">
+          <mat-checkbox
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" data-label="Select"
+          ><mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!--Full name Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          User-Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" data-label="User-Name">
+          {{ row.fullName }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- role Column -->
+      <ng-container matColumnDef="userRole">
+        <mat-header-cell *matHeaderCellDef>
+          Role
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" data-label="Role">
+          {{ row.userRoles }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="legacy " style="width: 50%">
+            <mat-label>Status</mat-label>
+            <mat-select multiple [(value)]="selectedStatus" >
+              <mat-option *ngFor="let status of statusList" [value]="status">
+                {{ status }}</mat-option
+              >
+              <button
+                mat-raised-button
+                color="primary"
+                style="width: 100%"
+                (click)="applyUserStatusFilter()"
+              >
+                Apply
+              </button>
+            </mat-select>
+          </mat-form-field>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" data-label="status">
+          {{ row.userStatus }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- CreatedOn Column -->
+      <ng-container matColumnDef="dateCreated">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="width: 100%">
+          Created On
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" data-label=" Created On">
+          {{ row.dateCreated | date: "medium" }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Action column -->
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef style="width: 100%">
+          Action
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" data-label=" Action">
+          <button
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a menu icon"
+            (click)="onEditUser(row)"
+          >
+            <mat-label>Edit Role</mat-label></button
+          >&nbsp;&nbsp;&nbsp;&nbsp;
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onDeleteUser(row)">
+              <mat-icon>delete</mat-icon>
+              <span>Remove user</span>
+            </button>
+            <button mat-menu-item routerLink="/user/profile/{{ row.userId }}">
+              <mat-icon>contacts</mat-icon>
+              <span>View profile</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">
+      No data matching the search "{{ input.value }}"
+    </td>
+  </tr>
+</div>
+<mat-progress-spinner
+  [mode]="'indeterminate'"
+  [diameter]="50"
+  *ngIf="loading$ | async"
+  color="primary"
+></mat-progress-spinner>

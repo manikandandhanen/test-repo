@@ -1,0 +1,140 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Emergency Contact Info</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="emergencyForm" (ngSubmit)="onEmergencySubmit()">
+            <h3>Medical Contact (Optional)</h3>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Physician Name</mat-label>
+                            <input matInput placeholder="Michal" formControlName="physician" name="physician"
+                                [(ngModel)]="emergencyInfo.physician">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput placeholder="9678574632" formControlName="phoneNumber" name="phoneNumber"
+                                [(ngModel)]="emergencyInfo.phoneNumber">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Blood Group</mat-label>
+                            <input matInput placeholder="O+" formControlName="physician" name="physician"
+                                [(ngModel)]="emergencyInfo.physician">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <h3> Emergency Contact </h3>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="Jack" formControlName="firstName" name="firstName"
+                                [(ngModel)]="emergencyInfo.firstName">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="sparrow" formControlName="lastName" name="lastName"
+                                [(ngModel)]="emergencyInfo.lastName">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Relationship</mat-label>
+                            <input matInput placeholder="Brother" formControlName="relationship" name="relationship"
+                                [(ngModel)]="emergencyInfo.relationship">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Street</mat-label>
+                            <input matInput placeholder="street" formControlName="street" name="street"
+                                [(ngModel)]="emergencyInfo.street">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>City</mat-label>
+                            <input matInput placeholder="city" formControlName="city" name="city"
+                                [(ngModel)]="emergencyInfo.city">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>State</mat-label>
+                            <input matInput placeholder="state" formControlName="state" name="state"
+                                [(ngModel)]="emergencyInfo.state">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Pincode</mat-label>
+                            <input matInput placeholder="pincode" formControlName="pincode" name="pincode"
+                                [(ngModel)]="emergencyInfo.pincode">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Home Phone</mat-label>
+                            <input matInput placeholder="homePhone" formControlName="homePhone" name="homePhone"
+                                [(ngModel)]="emergencyInfo.homePhone">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Work Phone</mat-label>
+                            <input matInput placeholder="workPhone" formControlName="workPhone" name="workPhone"
+                                [(ngModel)]="emergencyInfo.workPhone">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Mobile Phone</mat-label>
+                            <input matInput placeholder="mobilePhone" formControlName="mobilePhone" name="mobilePhone"
+                                [(ngModel)]="emergencyInfo.mobilePhone">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <span fxFlex="8px"></span>
+                <button mat-raised-button color="primary" type="submit" matStepperNext>Save & Continue</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

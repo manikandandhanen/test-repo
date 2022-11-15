@@ -1,0 +1,105 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-xs="17" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>University / College / Institution / School</mat-label>
+                <input matInput placeholder="Abc, university" name="university" [(ngModel)]="educational.university"
+                    [formControl]="$any(inputFormGroup.controls.university)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['university'].hasError('required') && inputFormGroup.controls['university'].touched"
+                class="form-error-msg"> University is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="15" class="pr-16">
+        <div class="pb-16">
+            <!-- <mat-form-field class="full-width">
+                <mat-label>Year of Completion</mat-label>
+                <input matInput [matDatepicker]="dp" [formControl]="$any(inputFormGroup.controls.completionYear)">
+                <mat-hint>MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp startView="multi-year" (monthSelected)="setMonthAndYear($event, dp)"
+                    panelClass="example-month-picker">
+                </mat-datepicker>
+            </mat-form-field> -->
+            <mat-form-field class="full-width">
+                <mat-label>Year of Completion</mat-label>
+                <input [(ngModel)]="educational.completionYear" [formControl]="$any(inputFormGroup.controls.completionYear)" matInput
+                    [matDatepicker]="picker" />
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event, picker)">
+                    </mat-datepicker>
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['completionYear'].hasError('required') && inputFormGroup.controls['completionYear'].touched"
+                class="form-error-msg"> Year of Completion is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="15" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Program</mat-label>
+                <input matInput placeholder="Full time" name="program" [(ngModel)]="educational.program"
+                    [formControl]="$any(inputFormGroup.controls.program)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['program'].hasError('required') && inputFormGroup.controls['program'].touched"
+                class="form-error-msg"> Program is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="15" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Aggregate %</mat-label>
+                <input matInput placeholder="76%" name="aggregate" [(ngModel)]="educational.aggregate"
+                    [formControl]="$any(inputFormGroup.controls.aggregate)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['aggregate'].hasError('required') && inputFormGroup.controls['aggregate'].touched"
+                class="form-error-msg"> Aggregate is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="15" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Grade</mat-label>
+                <input matInput placeholder="A+" name="grade" [(ngModel)]="educational.grade"
+                    [formControl]="$any(inputFormGroup.controls.grade)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['grade'].hasError('required') && inputFormGroup.controls['grade'].touched"
+                class="form-error-msg"> Grade is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="15" class="pr-16">
+        <div class="pb-16">
+            <div class="pb-16">
+                <button type="button" mat-raised-button (click)="FileSourceInput.click()">Upload Files</button>
+                <div>
+                    <span style="color: red; font-size: 8px;">Pdf only accepted*</span>
+                </div>
+                <input hidden accept=".pdf" (change)="onSelectFile($event)" #FileSourceInput type="file"
+                    id="panFileSource" multiple>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="3" class="pr-16">
+        <div class="pb-16">
+            <button mat-button  [attr.href]="FileSourceInput.value" (click)="openDialog()"
+                color="primary">Preview</button>
+            <ng-template #pdfDialog>
+                <h2 matDialogTitle>PDF!</h2>
+                <mat-dialog-content>
+                    <div>
+                        <pdf-viewer *ngFor='let url of urls' [src]="url" [show-all]="false" style="display: block;">
+                        </pdf-viewer>
+                    </div>
+                </mat-dialog-content>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button matDialogClose color="primary">Close</button>
+                </mat-dialog-actions>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Educational Info</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="educationalForm">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="10" class="pr-16">
+                    <div class="pb-16">
+                        <button type="button" mat-raised-button color="primary" (click)="addUser()">
+                            <mat-icon matTooltip="Add a new user">add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="10" class="pr-16">
+                    <div class="pb-16">
+                        <button type="button" mat-raised-button color="primary" (click)="openDialog()">
+                            View Files
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let u of userArray.controls; index as i">
+                <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-xs="90" class="pr-16">
+                        <div class="pb-16">
+                            <eductional [inputFormGroup]="$any(u)"></eductional>
+                        </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-xs="6" class="pr-16">
+                        <div class="pb-16">
+                            <button mat-raised-button color="warn" (click)="removeUser(i)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <span fxFlex="8px"></span>
+                <button mat-raised-button color="primary" type="submit" matStepperNext>Save & Continue</button>
+            </div>
+        </form>
+
+        <ng-template #pdfDialog>
+            <h2 matDialogTitle>PDF!</h2>
+            <mat-dialog-content>
+                <div>
+                    <pdf-viewer *ngFor='let url of urls' [src]="url" [show-all]="false" style="display: block;">
+                    </pdf-viewer>
+                </div>
+            </mat-dialog-content>
+            <mat-dialog-actions align="end">
+                <button mat-raised-button matDialogClose color="primary">Close</button>
+            </mat-dialog-actions>
+        </ng-template>
+    </mat-card-content>
+</mat-card>

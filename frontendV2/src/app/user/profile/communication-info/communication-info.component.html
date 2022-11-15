@@ -1,0 +1,168 @@
+<mat-card class="p-0">
+    <mat-card-content>
+        <form [formGroup]="correspondenceForm" (ngSubmit)="onCorrespondenceSubmit()">
+            <h3>Contact</h3>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" placeholder="mark@gmail.com" formControlName="email"
+                                name="email" [(ngModel)]="correspondenceInfo.email">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['email'].hasError('required') && correspondenceForm.controls['email'].touched"
+                            class="form-error-msg"> Email is required </small>
+                        <small
+                            *ngIf="correspondenceForm.controls['email'].hasError('email') && correspondenceForm.controls['email'].touched"
+                            class="form-error-msg"> Invaild email address </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Mobile Phone</mat-label>
+                            <input matInput placeholder="9876543210" formControlName="mobilePhone" name="mobilePhone"
+                                [(ngModel)]="correspondenceInfo.mobilePhone">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['mobilePhone'].hasError('required') && correspondenceForm.controls['mobilePhone'].touched"
+                            class="form-error-msg"> Mobile number is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Home Phone</mat-label>
+                            <input matInput placeholder="044 9077622" formControlName="homePhone" name="homePhone"
+                                [(ngModel)]="correspondenceInfo.homePhone">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <h3>Correspondence Address</h3>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Street Address</mat-label>
+                            <input matInput placeholder="123, abc street" formControlName="street" name="street"
+                                [(ngModel)]="correspondenceInfo.street">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['street'].hasError('required') && correspondenceForm.controls['street'].touched"
+                            class="form-error-msg"> Street address is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Apartment/Unit #</mat-label>
+                            <input matInput placeholder="xyz apartment" formControlName="apartment" name="apartment"
+                                [(ngModel)]="correspondenceInfo.apartment">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['apartment'].hasError('required') && correspondenceForm.controls['apartment'].touched"
+                            class="form-error-msg"> Apartment/Unit is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>City</mat-label>
+                            <input matInput placeholder="new york" formControlName="city" name="city"
+                                [(ngModel)]="correspondenceInfo.city">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['city'].hasError('required') && correspondenceForm.controls['city'].touched"
+                            class="form-error-msg"> City is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>State</mat-label>
+                            <input matInput placeholder="New york" formControlName="state" name="state"
+                                [(ngModel)]="correspondenceInfo.state">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['state'].hasError('required') && correspondenceForm.controls['state'].touched"
+                            class="form-error-msg"> State is required </small>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>PIN Code</mat-label>
+                            <input matInput placeholder="543666" formControlName="pincode" name="pincode"
+                                [(ngModel)]="correspondenceInfo.pincode">
+                        </mat-form-field>
+                        <small
+                            *ngIf="correspondenceForm.controls['pincode'].hasError('required') && correspondenceForm.controls['pincode'].touched"
+                            class="form-error-msg"> State is required </small>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <div class="pb-16">
+                    <mat-checkbox [formControl]="disableSelect">correspondence address same as permanent address
+                    </mat-checkbox>
+                </div>
+            </div>
+            <h3>Permanent Address</h3>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Street Address</mat-label>
+                            <input matInput placeholder="345, xyz street" [disabled]="disableSelect.value" name="street"
+                                [(ngModel)]="permanentInfo.street" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>Apartment/Unit #</mat-label>
+                            <input matInput placeholder="abc apartment" [disabled]="disableSelect.value"
+                                name="apartment" [(ngModel)]="permanentInfo.apartment"
+                                [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>City</mat-label>
+                            <input matInput placeholder="London" [disabled]="disableSelect.value" name="city"
+                                [(ngModel)]="permanentInfo.city" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>State</mat-label>
+                            <input matInput placeholder="London" [disabled]="disableSelect.value" name="state"
+                                [(ngModel)]="permanentInfo.state" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="20" class="pr-16">
+                    <div class="pb-16">
+                        <mat-form-field class="full-width">
+                            <mat-label>PIN Code</mat-label>
+                            <input matInput placeholder="234556" [disabled]="disableSelect.value" name="pincode"
+                                [(ngModel)]="permanentInfo.pincode" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row wrap">
+                <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+                <span fxFlex="8px"></span>
+                <button mat-raised-button color="primary" type="submit" matStepperNext>Save & Continue</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

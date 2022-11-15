@@ -1,0 +1,52 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Dependent</mat-label>
+                <input matInput placeholder="Father" name="dependentRelationship"
+                    [(ngModel)]="dependent.dependentRelationship"
+                    [formControl]="$any(inputFormGroup.controls.dependentRelationship)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['dependentRelationship'].hasError('required') && inputFormGroup.controls['dependentRelationship'].touched"
+                class="form-error-msg"> Dependent is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Mark" name="name" [(ngModel)]="dependent.name"
+                    [formControl]="$any(inputFormGroup.controls.name)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['name'].hasError('required') && inputFormGroup.controls['name'].touched"
+                class="form-error-msg"> Dependent name is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput name="dob" [(ngModel)]="dependent.dob" [formControl]="$any(inputFormGroup.controls.dob)"
+                    placeholder="Date of Birth" [matDatepicker]="appDatepicker">
+                <mat-datepicker-toggle matSuffix [for]="appDatepicker"></mat-datepicker-toggle>
+            </mat-form-field>
+            <mat-datepicker #appDatepicker></mat-datepicker>
+            <small *ngIf="inputFormGroup.controls['dob'].hasError('required') && inputFormGroup.controls['dob'].touched"
+                class="form-error-msg"> Date of Birth is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="25" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Gender</mat-label>
+                <input matInput placeholder="Male" name="gender" [(ngModel)]="dependent.gender"
+                    [formControl]="$any(inputFormGroup.controls.gender)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['gender'].hasError('required') && inputFormGroup.controls['gender'].touched"
+                class="form-error-msg"> Gender is required </small>
+        </div>
+    </div>
+</div>

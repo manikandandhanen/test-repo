@@ -1,0 +1,39 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" name="name" [(ngModel)]="personal.name"
+                    [formControl]="$any(inputFormGroup.controls.name)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['name'].hasError('required') && inputFormGroup.controls['name'].touched"
+                class="form-error-msg"> Name is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Relationship</mat-label>
+                <input matInput placeholder="Father" name="relationshipType" [(ngModel)]="personal.relationshipType"
+                    [formControl]="$any(inputFormGroup.controls.relationshipType)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['relationshipType'].hasError('required') && inputFormGroup.controls['relationshipType'].touched"
+                class="form-error-msg"> Relationship name is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="33" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput name="dob" [(ngModel)]="personal.dob" [formControl]="$any(inputFormGroup.controls.dob)"
+                    placeholder="Date of Birth" [matDatepicker]="appDatepicker">
+                <mat-datepicker-toggle matSuffix [for]="appDatepicker"></mat-datepicker-toggle>
+            </mat-form-field>
+            <mat-datepicker #appDatepicker></mat-datepicker>
+            <small *ngIf="inputFormGroup.controls['dob'].hasError('required') && inputFormGroup.controls['dob'].touched"
+                class="form-error-msg"> Date of Birth is required </small>
+        </div>
+    </div>
+</div>

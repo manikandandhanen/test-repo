@@ -1,0 +1,66 @@
+<mat-vertical-stepper [linear]="false" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Basic Info</ng-template>
+    <basic-info [userBasicInfo]="userProfile.userBasicInfo"></basic-info>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Communication Info</ng-template>
+    <!-- <communication-info></communication-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Personal Info</ng-template>
+    <!-- <personal-info></personal-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Spouse Info</ng-template>
+    <!-- <spouse-info></spouse-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Reference Info</ng-template>
+    <!-- <reference-info></reference-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Job History Info</ng-template>
+    <!-- <job-history-info></job-history-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Educational Info</ng-template>
+    <!-- <eductional-info></eductional-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Nominee Info</ng-template>
+    <!-- <nominee-info></nominee-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Dependent Info</ng-template>
+    <!-- <dependent-info></dependent-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Date of Joining Info</ng-template>
+    <!-- <date-of-joining-info></date-of-joining-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Bank Info</ng-template>
+    <!-- <bank-info></bank-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Emergency Info</ng-template>
+    <!-- <emergency-contact-info></emergency-contact-info> -->
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>File Upload</ng-template>
+    <!-- <file-upload></file-upload> -->
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <!-- <div>
+      <mat-icon class="pt-16" [style.fontSize]="'36px'">check</mat-icon>
+    </div>
+    <div class="pb-16 mb-16"> You Are Done.</div>
+    <div fxLayout="row">
+      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <span fxFlex="8px"></span>
+      <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    </div> -->
+  </mat-step>
+</mat-vertical-stepper>

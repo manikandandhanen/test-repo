@@ -1,0 +1,86 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-xs="16" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Position</mat-label>
+                <input matInput placeholder="Software Developer" name="position" [(ngModel)]="jobhistory.position"
+                    [formControl]="$any(inputFormGroup.controls.position)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['position'].hasError('required') && inputFormGroup.controls['position'].touched"
+                class="form-error-msg"> Position is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="16" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Name of the company</mat-label>
+                <input matInput placeholder="Abc pvt.ltd" name="companyName" [(ngModel)]="jobhistory.companyName"
+                    [formControl]="$any(inputFormGroup.controls.companyName)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['companyName'].hasError('required') && inputFormGroup.controls['companyName'].touched"
+                class="form-error-msg"> Name of the company is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="16" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="abc, Bangalore" name="companyAddress"
+                    [(ngModel)]="jobhistory.companyAddress"
+                    [formControl]="$any(inputFormGroup.controls.companyAddress)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['companyAddress'].hasError('required') && inputFormGroup.controls['companyAddress'].touched"
+                class="form-error-msg"> Address is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="16" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>No. of years</mat-label>
+                <input matInput placeholder="2" name="numberOfYears" [(ngModel)]="jobhistory.numberOfYears"
+                    [formControl]="$any(inputFormGroup.controls.numberOfYears)">
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['numberOfYears'].hasError('required') && inputFormGroup.controls['numberOfYears'].touched"
+                class="form-error-msg"> Years is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="16" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>Period</mat-label>
+                <!-- <input matInput placeholder="2 Months" name="period" [(ngModel)]="jobhistory.period"
+                    [formControl]="$any(inputFormGroup.controls.period)"> -->
+                <mat-date-range-input [rangePicker]="rangePicker">
+                    <input matStartDate [formControl]="$any(inputFormGroup.controls.period)" placeholder="Start date">
+                    <input matEndDate [formControl]="$any(inputFormGroup.controls.period)" placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker>
+                    <mat-date-range-picker-actions>
+                        <button mat-button matDateRangePickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+                    </mat-date-range-picker-actions>
+                </mat-date-range-picker>
+            </mat-form-field>
+            <small
+                *ngIf="inputFormGroup.controls['period'].hasError('required') && inputFormGroup.controls['period'].touched"
+                class="form-error-msg"> Period is required </small>
+        </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="16" class="pr-16">
+        <div class="pb-16">
+            <mat-form-field class="full-width">
+                <mat-label>CTC</mat-label>
+                <input matInput placeholder="350000" name="ctc" [(ngModel)]="jobhistory.ctc"
+                    [formControl]="$any(inputFormGroup.controls.ctc)">
+            </mat-form-field>
+            <small *ngIf="inputFormGroup.controls['ctc'].hasError('required') && inputFormGroup.controls['ctc'].touched"
+                class="form-error-msg"> CTC is required </small>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+
+  hrms-be:
+    container_name: hrms-be-cont
+    hostname: hrms-be
+    image: latest-be
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+     - 5001:80
+    restart: unless-stopped
+    
+      
+
+  hrms-fe:
+    container_name: hrms-fe-cont
+    hostname:  hrms-fe
+    image: latest-fe
+    build:
+      context: ./frontendV2
+      dockerfile: Dockerfile
+    ports:
+     - 4200:4200
+    restart: unless-stopped
+    depends_on:
+     - hrms-be 
